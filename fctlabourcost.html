@@ -2,24 +2,6 @@
 <html lang="en">
 
 <head>
-    <script>
-        function getNextMonday() {
-            let today = new Date();
-            let dayOfWeek = today.getDay();
-            let daysUntilNextMonday = (7 - dayOfWeek + 1) % 7; // Calculate days until next Monday
-
-            // If today is Monday, it will show the next Monday (7 days later)
-            if (daysUntilNextMonday === 0) {
-                daysUntilNextMonday = 7;
-            }
-
-            today.setDate(today.getDate() + daysUntilNextMonday); // Set the date to next Monday
-            let nextMonday = today.toDateString(); // Convert to a readable date format
-            document.getElementById('nextMonday').textContent = nextMonday;
-        }
-
-        window.onload = getNextMonday; // Call the function when the page loads
-    </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weekly Sales and Labour Cost Calculator</title>
@@ -106,6 +88,24 @@
 </head>
 
 <body>
+        <script>
+        function getNextMonday() {
+            let today = new Date();
+            let dayOfWeek = today.getDay();
+            let daysUntilNextMonday = (7 - dayOfWeek + 1) % 7; // Calculate days until next Monday
+
+            // If today is Monday, it will show the next Monday (7 days later)
+            if (daysUntilNextMonday === 0) {
+                daysUntilNextMonday = 7;
+            }
+
+            today.setDate(today.getDate() + daysUntilNextMonday); // Set the date to next Monday
+            let nextMonday = today.toDateString(); // Convert to a readable date format
+            document.getElementById('nextMonday').textContent = nextMonday;
+        }
+
+        window.onload = getNextMonday; // Call the function when the page loads
+    </script>
   <div class="container">
     <div class="section">
       <h2>Forecast - FCTowers Week Starting: <span id="getNextMonday"></span></h2>
