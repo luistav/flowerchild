@@ -152,11 +152,6 @@
         let dayOfWeek = weekStartingDate.getDay();
         let daysUntilNextMonday = (7 - dayOfWeek + 1) % 7; // Calculate days until next Monday
 
-          // If today is Monday, it will show the next Monday (7 days later)
-        if (daysUntilNextMonday === 0) {
-        daysUntilNextMonday = 1;
-        }
-
         weekStartingDate.setDate(weekStartingDate.getDate() + daysUntilNextMonday); // Set the date to next Monday
         document.getElementById('week-starting').textContent = weekStartingDate.toLocaleDateString('en-AU');
 
