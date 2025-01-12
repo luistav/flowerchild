@@ -2,58 +2,77 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Labour Cost Calculator</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-      background-color: #f4f4f9;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labour Cost Calculator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-    h1 {
-      font-size: 1.5rem;
-      margin-bottom: 20px;
-      color: #333;
-    }
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f3f4f6, #e2e8f0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
 
-    .button {
-      display: block;
-      width: 90%;
-      max-width: 300px;
-      margin: 10px 0;
-      padding: 15px;
-      font-size: 1rem;
-      font-weight: bold;
-      color: white;
-      background-color: #007BFF;
-      border: none;
-      border-radius: 5px;
-      text-decoration: none;
-      text-align: center;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: background-color 0.3s ease;
-    }
+        .container {
+            text-align: center;
+            padding: 20px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 400px;
+        }
 
-    .button:hover {
-      background-color: #0056b3;
-    }
-  </style>
+        h1 {
+            font-size: 1.8em;
+            color: #2d3748;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 15px;
+            font-size: 1em;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(135deg, #4299e1, #3182ce);
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .button:hover {
+            background: linear-gradient(135deg, #3182ce, #2b6cb0);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 0.8em;
+            color: #718096;
+        }
+    </style>
 </head>
 
 <body>
-  <h1>Labour Cost Calculator</h1>
-  <a href="fcwlabourcost.html" class="button">Calculate Warringah Labour</a>
-  <a href="fcclabourcost.html" class="button">Calculate Chatswood Labour</a>
-  <a href="fctlabourcost.html" class="button">Calculate Castle Towers Labour</a>
+    <div class="container">
+        <h1>Labour Cost Calculator</h1>
+        <a href="fcwlabourcost.html" class="button">Calculate Warringah Labour</a>
+        <a href="fcclabourcost.html" class="button">Calculate Chatswood Labour</a>
+        <a href="fctlabourcost.html" class="button">Calculate Castle Towers Labour</a>
+        <footer>&copy; 2025 Your Company</footer>
+    </div>
 </body>
 
 </html>
