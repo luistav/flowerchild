@@ -131,8 +131,11 @@
 
     <script>
         const weekStartingDate = new Date();
-        document.getElementById('week-starting').textContent = weekStartingDate.toLocaleDateString('en-AU');
+        let dayOfWeek = weekStartingDate.getDay();
+        let daysUntilNextMonday = (7 - dayOfWeek + 1) % 7; // Calculate days until next Monday
 
+        weekStartingDate.setDate(weekStartingDate.getDate() + daysUntilNextMonday); // Set the date to next Monday
+        document.getElementById('week-starting').textContent = weekStartingDate.toLocaleDateString('en-AU');
         const employeeInputs = document.getElementById('employee-inputs');
 
         fetch('users.json')
