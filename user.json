@@ -1,0 +1,58 @@
+[
+    {
+        "name": "Nana",
+        "rate": 26,
+        "defaultHours": 40,
+        "defaultLeave": 0,
+        "defaultPH": 0
+    },
+    {
+        "name": "Tyler",
+        "rate": 30,
+        "defaultHours": 35,
+        "defaultLeave": 0,
+        "defaultPH": 0
+    },
+    {
+        "name": "Erick",
+        "rate": 27,
+        "defaultHours": 38,
+        "defaultLeave": 2,
+        "defaultPH": 0
+    },
+    {
+        "name": "Kane",
+        "rate": 32,
+        "defaultHours": 40,
+        "defaultLeave": 0,
+        "defaultPH": 1
+    },
+    {
+        "name": "Vu",
+        "rate": 24.5,
+        "defaultHours": 30,
+        "defaultLeave": 1,
+        "defaultPH": 0
+    },
+    {
+        "name": "Lalit",
+        "rate": 24.5,
+        "defaultHours": 32,
+        "defaultLeave": 0,
+        "defaultPH": 1
+    },
+    {
+        "name": "Daniel",
+        "rate": 17,
+        "defaultHours": 20,
+        "defaultLeave": 0,
+        "defaultPH": 0
+    },
+    {
+        "name": "Felix",
+        "rate": 24.5,
+        "defaultHours": 25,
+        "defaultLeave": 0,
+        "defaultPH": 0
+    }
+]
