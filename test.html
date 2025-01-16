@@ -182,6 +182,29 @@
 
                     const labourCost = totalWageCost / totalSales;
                     document.getElementById('labour-result').textContent = `Labour Cost Ratio: ${(labourCost * 100).toFixed(2)}%`;
+               // Add warnings
+            const warningMessage = document.createElement('div');
+            warningMessage.style.marginTop = '10px';
+            warningMessage.style.fontSize = '1em';
+            warningMessage.style.fontWeight = 'bold';
+            warningMessage.style.color = labourCost > 0.18 ? 'red' : labourCost < 0.16 ? 'orange' : 'green';
+
+            if (labourCost > 0.18) {
+                warningMessage.textContent = 'Warning: Labour cost is above 18%. Try reducing the hours.';
+            } else if (labourCost < 0.16) {
+                warningMessage.textContent = 'Note: Labour cost is below 16%. Maybe you need more people.';
+            } else {
+                warningMessage.textContent = 'Labour cost is within the optimal range.';
+            }
+
+            // Append the warning message
+            const labourResult = document.getElementById('labour-result');
+            if (labourResult.nextSibling) {
+                labourResult.nextSibling.remove(); // Remove existing warning
+            }
+            labourResult.parentNode.appendChild(warningMessage);
+                
+                
                 });
         }
     </script>
