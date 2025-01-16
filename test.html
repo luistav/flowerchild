@@ -167,22 +167,26 @@
         }
 
         function calculateLabourCost() {
-            const totalSales = calculateSales() / 1.1; // Sales without GST
-            let totalWageCost = 737; // Add 737 to total wage cost
+    const totalSales = calculateSales() / 1.1; // Sales without GST
+    let totalWageCost = 737; // Add 737 to total wage cost
 
-            fetch('users.json')
-                .then(response => response.json())
-                .then(data => {
-                    data.forEach(employee => {
-                        const hours = Number(document.getElementById(`${employee.name}-hours`).value) || 0;
-                        const annual = Number(document.getElementById(`${employee.name}-annual`).value) || 0;
-                        const holiday = Number(document.getElementById(`${employee.name}-holiday`).value) || 0;
-                        totalWageCost += (hours + annual + holiday) * employee.rate;
-                    });
+    fetch('users.json')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(employee => {
+                const hours = Number(document.getElementById(`${employee.name}-hours`).value) || 0;
+                const annual = Number(document.getElementById(`${employee.name}-annual`).value) || 0;
+                const holiday = Number(document.getElementById(`${employee.name}-holiday`).value) || 0;
+                totalWageCost += (hours + annual + holiday) * employee.rate;
+            });
 
-                    const labourCost = totalWageCost / totalSales;
-                    document.getElementById('labour-result').textContent = `Labour Cost Ratio: ${(labourCost * 100).toFixed(2)}%`;
-               // Add warnings
+            const labourCost = totalWageCost / totalSales;
+            const labourCostPercentage = (labourCost * 100).toFixed(2);
+
+            // Display the labour cost ratio
+            document.getElementById('labour-result').textContent = `Labour Cost Ratio: ${labourCostPercentage}%`;
+
+            // Add warnings
             const warningMessage = document.createElement('div');
             warningMessage.style.marginTop = '10px';
             warningMessage.style.fontSize = '1em';
@@ -203,10 +207,9 @@
                 labourResult.nextSibling.remove(); // Remove existing warning
             }
             labourResult.parentNode.appendChild(warningMessage);
-                
-                
-                });
-        }
+        });
+}
+
     </script>
 </body>
 </html>
