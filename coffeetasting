@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Evaluation Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        form {
+            max-width: 700px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="date"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="range"] {
+            width: 100%;
+        }
+        .rating {
+            margin-top: 10px;
+        }
+        .rating label {
+            display: inline-block;
+            width: 50%;
+        }
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Coffee Evaluation Form</h1>
+    <form action="/submit-evaluation" method="post">
+        <!-- General Details -->
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="evaluator">Evaluator Name:</label>
+        <input type="text" id="evaluator" name="evaluator" required>
+
+        <label for="coffee-name">Coffee Name/Type:</label>
+        <input type="text" id="coffee-name" name="coffee_name" required>
+
+        <label for="barista">Barista Name:</label>
+        <input type="text" id="barista" name="barista" required>
+
+        <h2>Taste Profile</h2>
+
+        <!-- Flavor Options -->
+        <label for="flavor">Flavor Profile:</label>
+        <select id="flavor" name="flavor">
+            <option value="fruity">Fruity</option>
+            <option value="nutty">Nutty</option>
+            <option value="chocolatey">Chocolatey</option>
+            <option value="floral">Floral</option>
+            <option value="spicy">Spicy</option>
+            <option value="earthy">Earthy</option>
+        </select>
+
+        <!-- Aroma -->
+        <label for="aroma">Aroma:</label>
+        <input type="range" id="aroma" name="aroma" min="1" max="10" step="1">
+        <span>1 (Weak) - 10 (Strong)</span>
+
+        <!-- Acidity -->
+        <label for="acidity">Acidity:</label>
+        <select id="acidity" name="acidity">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+        </select>
+
+        <!-- Sweetness -->
+        <label for="sweetness">Sweetness:</label>
+        <input type="range" id="sweetness" name="sweetness" min="1" max="10" step="1">
+        <span>1 (Low) - 10 (High)</span>
+
+        <!-- Body -->
+        <label for="body">Body:</label>
+        <select id="body" name="body">
+            <option value="light">Light</option>
+            <option value="medium">Medium</option>
+            <option value="full">Full</option>
+        </select>
+
+        <!-- Aftertaste -->
+        <label for="aftertaste">Aftertaste:</label>
+        <input type="range" id="aftertaste" name="aftertaste" min="1" max="10" step="1">
+        <span>1 (Unpleasant) - 10 (Pleasant)</span>
+
+        <!-- Overall Score -->
+        <h2>Overall Evaluation</h2>
+        <label for="presentation">Presentation (e.g., latte art):</label>
+        <input type="range" id="presentation" name="presentation" min="1" max="10" step="1">
+        <span>1 (Poor) - 10 (Excellent)</span>
+
+        <label for="general-impression">General Impression:</label>
+        <input type="range" id="general-impression" name="general_impression" min="1" max="10" step="1">
+        <span>1 (Poor) - 10 (Excellent)</span>
+
+        <!-- Suggestions -->
+        <label for="suggestions">Suggestions for Improvement:</label>
+        <textarea id="suggestions" name="suggestions" rows="4"></textarea>
+
+        <!-- Submit Button -->
+        <button type="submit" class="submit-btn">Submit Evaluation</button>
+    </form>
+</body>
+</html>
