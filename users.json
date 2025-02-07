@@ -1,7 +1,7 @@
 [
     {
         "name": "Nana",
-        "rate": 26,
+        "rate": 25.5,
         "defaultHours": 45,
         "defaultLeave": 0,
         "defaultPH": 0
@@ -29,7 +29,7 @@
     },
     {
         "name": "Vu",
-        "rate": 32,
+        "rate": 24.5,
         "defaultHours": 30,
         "defaultLeave": 0,
         "defaultPH": 0
