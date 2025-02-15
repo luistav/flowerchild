@@ -44,14 +44,14 @@
     {
         "name": "Daniel",
         "rate": 17,
-        "defaultHours": 0,
+        "defaultHours": 18,
         "defaultLeave": 0,
         "defaultPH": 0
     },
     {
-        "name": "Felix",
+        "name": "Other",
         "rate": 24.5,
-        "defaultHours": 24,
+        "defaultHours": 0,
         "defaultLeave": 0,
         "defaultPH": 0
     }
