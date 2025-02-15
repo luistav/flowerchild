@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Sales and Labour Cost Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2, h3 {
+            margin-bottom: 10px;
+            text-align: center;
+            grid-column: span 2;
+        }
+
+        .section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .input-group label {
+            font-weight: bold;
+            flex: 1;
+        }
+
+        .input-group input {
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            width: 50px;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #4caf50;
+            color: white;
+            text-align: center;
+            align-self: center;
+            max-width: 200px;
+            width: 100%;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="section">
+            <h2>Week Starting <span id="week-starting"></span></h2>
+            <h3>Sales Input</h3>
+            <div class="input-group">
+                <label for="day1">Monday</label>
+                <input type="number" id="day1" placeholder="Enter sales">
+            </div>
+            <div class="input-group">
+                <label for="day2">Tuesday</label>
+                <input type="number" id="day2" placeholder="Enter sales">
+            </div>
+            <div class="input-group">
+                <label for="day3">Wednesday</label>
+                <input type="number" id="day3" placeholder="Enter sales">
+            </div>
+            <div class="input-group">
+                <label for="day4">Thursday</label>
+                <input type="number" id="day4" placeholder="Enter sales">
+            </div>
+            <div class="input-group">
+                <label for="day5">Friday</label>
+                <input type="number" id="day5" placeholder="Enter sales">
+            </div>
+            <div class="input-group">
+                <label for="day6">Saturday</label>
+                <input type="number" id="day6" placeholder="Enter sales">
+            </div>
+            <div class="input-group">
+                <label for="day7">Sunday</label>
+                <input type="number" id="day7" placeholder="Enter sales">
+            </div>
+            <button class="button" onclick="calculateSales()">Calculate Total Sales</button>
+            <div class="result" id="sales-result"></div>
+        </div>
+
+        <div class="section">
+            <h3>Labour Cost Calculation</h3>
+            <div id="employee-inputs"></div>
+            <button class="button" onclick="calculateLabourCost()">Calculate Labour Cost</button>
+            <div class="result" id="labour-result"></div>
+        </div>
+    </div>
+
+    <script>
+        const weekStartingDate = new Date();
+        let dayOfWeek = weekStartingDate.getDay();
+        let daysUntilNextMonday = (7 - dayOfWeek + 1) % 7; // Calculate days until next Monday
+
+        weekStartingDate.setDate(weekStartingDate.getDate() + daysUntilNextMonday); // Set the date to next Monday
+        document.getElementById('week-starting').textContent = weekStartingDate.toLocaleDateString('en-AU');
+        const employeeInputs = document.getElementById('employee-inputs');
+
+        fetch('usersfcc.json')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(employee => {
+                    const div = document.createElement('div');
+                    div.classList.add('input-group');
+                    div.innerHTML = `
+                        <label>${employee.name}</label>
+                        <input type="number" id="${employee.name}-hours" placeholder="Hours" value="${employee.defaultHours || ''}">
+                        <input type="number" id="${employee.name}-annual" placeholder="Leave" value="${employee.defaultLeave || ''}">
+                        <input type="number" id="${employee.name}-holiday" placeholder="PH" value="${employee.defaultPH || ''}">
+                    `;
+                    employeeInputs.appendChild(div);
+                });
+            });
+
+        function calculateSales() {
+            const sales = [
+                Number(document.getElementById('day1').value) || 0,
+                Number(document.getElementById('day2').value) || 0,
+                Number(document.getElementById('day3').value) || 0,
+                Number(document.getElementById('day4').value) || 0,
+                Number(document.getElementById('day5').value) || 0,
+                Number(document.getElementById('day6').value) || 0,
+                Number(document.getElementById('day7').value) || 0
+            ];
+            const totalSales = sales.reduce((a, b) => a + b, 0);
+            document.getElementById('sales-result').textContent = `Total Weekly Sales: $${totalSales.toFixed(2)}`;
+            return totalSales;
+        }
+
+        function calculateLabourCost() {
+    const totalSales = calculateSales() / 1.1; // Sales without GST
+    let totalWageCost = 737; // Add 737 to total wage cost
+
+    fetch('users.json')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(employee => {
+                const hours = Number(document.getElementById(`${employee.name}-hours`).value) || 0;
+                const annual = Number(document.getElementById(`${employee.name}-annual`).value) || 0;
+                const holiday = Number(document.getElementById(`${employee.name}-holiday`).value) || 0;
+                totalWageCost += (hours + annual + holiday) * employee.rate;
+            });
+
+            const labourCost = totalWageCost / totalSales;
+            const labourCostPercentage = (labourCost * 100).toFixed(2);
+
+            // Display the labour cost ratio
+            document.getElementById('labour-result').textContent = `Labour Cost Ratio: ${labourCostPercentage}%`;
+
+            // Add warnings
+            const warningMessage = document.createElement('div');
+            warningMessage.style.marginTop = '10px';
+            warningMessage.style.fontSize = '1em';
+            warningMessage.style.fontWeight = 'bold';
+            warningMessage.style.textAlign = 'center'; // Center align the text
+            warningMessage.style.margin = '0 auto'; // Center align the element horizontally
+            warningMessage.style.color = labourCost > 0.18 ? 'red' : labourCost < 0.16 ? 'orange' : 'green';
+
+            if (labourCost > 0.18) {
+                warningMessage.textContent = 'Warning: Labour cost is above 18%. Try reducing the hours.';
+            } else if (labourCost < 0.16) {
+                warningMessage.textContent = 'Note: Labour cost is below 16%. Maybe you need more people.';
+            } else {
+                warningMessage.textContent = 'Labour cost is within the optimal range.';
+            }
+    
+            // Append the warning message
+            const labourResult = document.getElementById('labour-result');
+            if (labourResult.nextSibling) {
+                labourResult.nextSibling.remove(); // Remove existing warning
+            }
+            labourResult.parentNode.appendChild(warningMessage);
+        });
+}
+
+    </script>
+</body>
+</html>
